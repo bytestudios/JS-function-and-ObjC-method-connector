@@ -10,4 +10,4 @@ Also, since this is an excellent way to do javascript coding inside an objective
 application, I included the ability to use a local HTML file, a remote HTML file and
 a remote HTML file that includes a POST so you can send a user and token, say.
 
-No licence, no warranty, use as is for any purpose you see fit.
+No license, no warranty, use as is for any purpose you see fit.
