@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+    <head>
+        <style type='text/css'>
+            html { font-family:Helvetica; color:#222; }
+            h1 { color:steelblue; font-size:24px; margin-top:24px; }
+            #log_area { font-family: monospace; font-size: 10px; }
+            </style>
+    </head>
+    <body>
+        <h1 id="the_headline">Starting Javascript</h1>
+        <script>
+            // getElementById is how we'll communicate things
+            document.getElementById("the_headline").innerHTML = "Welcome - Talk between JS and ObjC";
+            
+            // functions that will get triggered by ObjC
+            function localJSFunctionOne(var1) {
+                document.getElementById("the_headline").innerHTML = "Got message: "+var1;
+            }
+        function localJSFunctionTwo(var1, var2, var3) {
+            document.getElementById("the_headline").innerHTML = "Got messages: "+var1+", "+var2+", "+var3;
+        }
+        function localJSLog(line) {
+            document.getElementById("log_area").innerHTML += line+'<br />'
+        }
+        
+        // functions that trigger ObjC -- specifically through the ObjCConnector object
+        function clickButton(which) {
+            if (which=="one_thing") {
+                ObjCConnector.functionOne(document.getElementById("first_input_box").value);
+                document.getElementById("the_headline").innerHTML = "Ran ObjC method functionOne";
+            }
+            if (which=="another") {
+                ObjCConnector.functionTwo(document.getElementById("second_input_box").value);
+                document.getElementById("the_headline").innerHTML = "Ran ObjC method functionTwo";
+            }
+        }
+        </script>
+        
+        <input id="first_input_box" value="first value to be passed" />
+        <input id="second_input_box" value="second value" />
+        
+        <br />
+        
+        <button onclick="clickButton('one_thing')">One Thing</button>
+        <button onclick="clickButton('another');">Another</button>
+        
+        <br /><br />
+        <div id="log_area">JSLog Start Here:<br /></div>
+    </body>
+</html>
